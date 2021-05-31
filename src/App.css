@@ -1,38 +1,84 @@
-.App {
-  text-align: center;
+/* ---COLORES/FUENTES BASE--- */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+body {
+  font-family: 'Nunito', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --color-A: #d9e4dd;
+  --color-B: #fbf7f0;
+  --color-C: #cdc9c3;
+  --color-D: #555555;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* ---NAVBAR--- */
+
+.navbar {
+  background-color: var(--color-A);
+  color: var(--color-D);
+}
+.navbar-brand {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar-brand h3 {
+  margin-left: .5em;
+  margin-bottom: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.container-fluid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-nav {
+  margin: auto;
+  gap: 5em;
+  box-sizing: border-box;
+}
+
+.navbar-nav li a:hover {
+  border-bottom: 3px var(--color-D) solid;
+  transform: scale(1.05);
+  transition: all .1s ease;
+}
+
+.dropdown-menu li a:hover {
+  border-bottom: none;
+}
+
+.d-flex input:focus{
+  border: 5px var(--color-D) solid;
+}
+
+.d-flex button:hover{
+  background-color: var(--color-D);
+}
+
+@media (max-width:990px) {
+  .navbar-nav {
+    gap: .5em;
   }
-  to {
-    transform: rotate(360deg);
+
+  .navbar-nav li a:hover {
+    transform: none;
   }
+
+  
+
+}
+
+@media (max-width:600px) {
+  .d-flex input{
+    display: none;
+  }
+
+  .d-flex button{
+    display: none;
+  }
+
 }
