@@ -5,7 +5,7 @@ import { ItemListContainer } from './components/ItemListContainer/ItemListContai
 const App = () => {
   return <>
     <NavBar />
-    <ItemListContainer />
+    <ItemListContainer mensaje='Aqui va la tienda' />
   </>;
 }
 

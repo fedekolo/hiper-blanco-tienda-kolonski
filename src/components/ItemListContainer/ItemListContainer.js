@@ -3,11 +3,11 @@ import { itemListContainerStyle } from './ItemListContainerStyle';
 
 const useStyles = makeStyles((theme) => itemListContainerStyle(theme));
 
-export const ItemListContainer = () => {
+export const ItemListContainer = ({ mensaje }) => {
     const classes = useStyles();
 
     return <section className={classes.container}>
-        <h3>Aqui va la tienda</h3>
+        <h3>{mensaje}</h3>
     </section>
 
 }
