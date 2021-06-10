@@ -1,4 +1,4 @@
-export const userWidgetStyle = theme => {
+export const userHugeStyle = theme => {
     return ({
         container: {
             display: 'flex',

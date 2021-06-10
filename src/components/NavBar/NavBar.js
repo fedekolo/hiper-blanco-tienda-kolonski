@@ -1,7 +1,7 @@
 import logo from './logo-menu.png';
 import { makeStyles } from '@material-ui/core';
 import { navBarStyle } from './NavBarStyle';
-import { UserWidget } from '../UserWidget/UserWidget';
+import { UserHuge } from '../UserHuge/UserHuge';
 
 const useStyles = makeStyles((theme) => navBarStyle(theme));
 
@@ -23,6 +23,6 @@ export const NavBar = () => {
               <li>Local</li>
               <li>Contacto</li>
             </ul>
-            <UserWidget />
+            <UserHuge />
           </nav>;
   }
