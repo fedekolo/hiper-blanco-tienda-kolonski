@@ -6,7 +6,6 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 const useStyles = makeStyles((theme) => itemCountStyle(theme));
 
-
 export const ItemCount = ({ stock, initial }) => {
     const classes = useStyles();
     const [contador,setContador] = useState(parseInt(initial));
