@@ -15,7 +15,7 @@ export const ItemCount = ({ stock, initial }) => {
     }
 
     const restarCantidad = () => {
-        contador>0 ? setContador(contador - 1) : setContador(contador);
+        contador>initial ? setContador(contador - 1) : setContador(contador);
     }
 
     return <article>
