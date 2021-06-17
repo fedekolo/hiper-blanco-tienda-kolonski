@@ -32,14 +32,11 @@ export const ItemListContainer = ({ mensaje }) => {
     const classes = useStyles();
 
     const [productos,setProductos] = useState([]);
-
-    const ejecucionPromise = () => {
+    
+    useEffect(() => {
         items().then(
             data => setProductos(data)
         )
-    }
-    useEffect(() => {
-        ejecucionPromise();
     },[]);
 
     return <section className={classes.container}>
