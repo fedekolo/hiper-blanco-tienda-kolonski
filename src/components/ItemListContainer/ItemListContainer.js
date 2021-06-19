@@ -28,7 +28,7 @@ const items = () => {
     })
 }
 
-export const ItemListContainer = ({ mensaje }) => {
+export const ItemListContainer = () => {
     const classes = useStyles();
 
     const [productos,setProductos] = useState([]);
@@ -40,7 +40,6 @@ export const ItemListContainer = ({ mensaje }) => {
     },[]);
 
     return <section className={classes.container}>
-        <h3>{mensaje}</h3>
         <ItemList items={productos} />
     </section>
 

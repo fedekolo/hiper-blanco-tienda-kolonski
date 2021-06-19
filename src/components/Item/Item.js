@@ -8,8 +8,10 @@ export const Item = ({ item }) => {
 
     return <article className={classes.container}>
         <img src={item.pictureUrl} alt={item.description}/>
-        <h3>{item.title}</h3>
-        <span>{item.price}</span>
+        <div>
+            <h3>{item.title}</h3>
+            <span>{item.price}</span>
+        </div>
     </article>
 
 }

@@ -4,7 +4,7 @@
 
 body {
   font-family: 'Nunito', sans-serif;
-  background-color: var(--color-A);
+  background-color: var(--color-background);
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
@@ -16,4 +16,5 @@ body {
   --color-A: #fafafa;
   --color-B: #c2c2c2;
   --color-C: #5c5c5c;
+  --color-background: #dadada77;
 }

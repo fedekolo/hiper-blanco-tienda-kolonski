@@ -20,7 +20,7 @@ export const ItemCount = ({ stock, initial }) => {
 
     return <article>
         
-        <ButtonGroup className={classes.container} variant="text" color="primary" aria-label="text primary button group">
+        <ButtonGroup className={classes.container} variant="text" aria-label="text primary button group">
             <Button onClick={e => sumarCantidad()}>+</Button>
             <span>{contador}</span>
             <Button onClick={e => restarCantidad()}>-</Button>

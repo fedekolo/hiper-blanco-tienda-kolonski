@@ -12,7 +12,9 @@ const getItem = () => {
                     id: 1,
                     title: "Almohada",
                     description: "Muy linda y suave",
+                    category: "Almohadas",
                     price: "$800",
+                    colors: "Blanco",
                     pictureUrl: "https://hendel-r7d8odghj1.stackpathdns.com/media/catalog/product/cache/0c3e9ac8430b5a3e77d1544ae1698a10/1/2/12652.jpg"
                 }
         ),2000)

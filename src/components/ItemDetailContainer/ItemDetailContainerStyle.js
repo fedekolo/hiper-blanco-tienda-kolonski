@@ -3,7 +3,7 @@ export const itemDetailContainerStyle = theme => {
         container: {
             display: 'flex',
             justifyContent: 'center',
-            paddingTop: '4rem',
+            paddingTop: '5rem',
             flexDirection: 'column',
             alignItems: 'center'
         }
