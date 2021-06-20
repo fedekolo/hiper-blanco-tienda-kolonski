@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { itemListContainerStyle } from './ItemListContainerStyle';
-import { ItemList } from '../ItemList/ItemList';
+import { ItemList } from './components/ItemList/ItemList';
 
 const useStyles = makeStyles((theme) => itemListContainerStyle(theme));
 
@@ -30,7 +30,6 @@ const items = () => {
 
 export const ItemListContainer = () => {
     const classes = useStyles();
-
     const [productos,setProductos] = useState([]);
     
     useEffect(() => {
@@ -39,7 +38,7 @@ export const ItemListContainer = () => {
         )
     },[]);
 
-    return <section className={classes.container}>
+    return <section className={classes.container} id="tienda">
         <ItemList items={productos} />
     </section>
 

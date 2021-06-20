@@ -1,7 +1,8 @@
 import logo from './logo-menu.png';
 import { makeStyles } from '@material-ui/core';
 import { navBarStyle } from './NavBarStyle';
-import { UserHuge } from '../UserHuge/UserHuge';
+import { UserHuge } from './components/UserHuge/UserHuge';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => navBarStyle(theme));
 
@@ -10,7 +11,7 @@ export const NavBar = () => {
     
     return <nav className={classes.container}>
             <div>
-              <img src={logo} alt='Logo Hiper Blanco'/>
+              <Link to={'/'}><img src={logo} alt='Logo Hiper Blanco'/></Link>
               <div>
                 <span>Hiper</span>
                 <span>Blanco</span>
