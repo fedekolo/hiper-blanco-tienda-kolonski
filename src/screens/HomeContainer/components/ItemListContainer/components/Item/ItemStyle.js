@@ -22,7 +22,11 @@ export const itemStyle = theme => {
                 flexDirection: "column",
                 alignItems: "center",
                 '& h3': {
-                    margin: ".5rem auto"
+                    margin: ".5rem auto",
+                    color: "var(--color-C)",
+                },
+                '& span': {
+                    color: "var(--color-C)"
                 }
             },
             '&:hover': {

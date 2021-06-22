@@ -10,7 +10,7 @@ export const ItemList = ({ items }) => {
 
     return <section className={classes.container}>
         {items.map((producto,i) => 
-            <Link to={`/tienda/${producto.id}`}>
+            <Link to={`/item/${producto.id}`}>
                 <Item 
                     key={i}
                     item={producto}

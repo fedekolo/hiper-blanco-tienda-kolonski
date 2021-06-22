@@ -19,10 +19,12 @@ export const ItemDetailControl = ({ item }) => {
                 <Select
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
-                value={item.colors}
+                value={item[0].colors}
                 label="Color"
                 >
-                    <MenuItem value={item.colors}>{item.colors}</MenuItem>
+                    {item[0].colors.map((color,i) => 
+                        <MenuItem value={color} key={i}>{color}</MenuItem>
+                    )}
                 </Select>
             </FormControl>
             <ItemCount stock="8" initial="1" />

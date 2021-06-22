@@ -10,6 +10,7 @@ export const navBarStyle = theme => {
             boxShadow: '1px 1px 10px var(--color-B)',
             position: 'fixed',
             top: '0',
+            zIndex: "999",
             '& > div': {
             display: 'flex',
             gap: '.5rem',

@@ -1,17 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { NavBar } from '../components/NavBarContainer/NavBar';
-import { ItemListContainer } from '../screens/ItemListContainer/ItemListContainer';
 import { ItemDetailContainer } from '../screens/ItemDetailContainer/ItemDetailContainer';
+import { HomeContainer } from '../screens/HomeContainer/HomeContainer';
 
 export const Router = () => {
     return <BrowserRouter>
         <NavBar />
         <Switch>
             <Route exact path="/">
-                <ItemListContainer />
+                <HomeContainer />
             </Route>
-            <Route path="/tienda/:id">
+            <Route path="/item/:id">
                 <ItemDetailContainer />
             </Route>
         </Switch>

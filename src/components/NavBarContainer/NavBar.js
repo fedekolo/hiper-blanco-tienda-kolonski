@@ -18,8 +18,8 @@ export const NavBar = () => {
               </div>
             </div>
             <ul>
-              <li>Inicio</li>
-              <li>Categorias</li>
+              <li><Link to={'/'}>Inicio</Link></li>
+              <li><Link to={'/categorias'}>Categorias</Link></li>
               <li>Tienda</li>
               <li>Local</li>
               <li>Contacto</li>

@@ -3,8 +3,8 @@ export const itemListContainerStyle = theme => {
         container: {
             display: 'flex',
             justifyContent: 'center',
-            paddingTop: '4rem',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
+            paddingBottom: "5rem"
         }
     })};

@@ -10,6 +10,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 :root {
@@ -17,4 +18,9 @@ body {
   --color-B: #c2c2c2;
   --color-C: #5c5c5c;
   --color-background: #dadada77;
+}
+
+a:focus, a:hover, a:visited, a:link, a:active {
+  text-decoration: none;
+  color: black;
 }
