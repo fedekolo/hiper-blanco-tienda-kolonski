@@ -11,8 +11,23 @@ export const Router = () => {
             <Route exact path="/">
                 <HomeContainer />
             </Route>
+            <Route path="/tienda">
+                <HomeContainer />
+            </Route>
+            <Route path="/categorias">
+                <HomeContainer />
+            </Route>
+            <Route path="/local">
+                <HomeContainer />
+            </Route>
+            <Route path="/contacto">
+                <HomeContainer />
+            </Route>
             <Route path="/item/:id">
                 <ItemDetailContainer />
+            </Route>
+            <Route path="/category/:catId">
+                <HomeContainer />
             </Route>
         </Switch>
     </BrowserRouter>

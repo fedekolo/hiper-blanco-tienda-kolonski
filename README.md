@@ -8,3 +8,5 @@ Con respecto a las tecnologias usadas, se uso la libreria de React con los sigui
 - React Router Dom: utilizado para rutear las distintas secciones de la página.
 - Swiper: utilizado para el carrousel apto mobile colocado en el home de la página.
 - Material core/icons: framework utilizado para ciertos complementos y para todos los íconos de la página.
+- Loader Spinner: utilizado para mostrar un loader de carga a la espera de que se ejecuten las promises.
+

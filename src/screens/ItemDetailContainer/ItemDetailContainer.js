@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import { itemDetailContainerStyle } from './ItemDetailContainerStyle';
 import { ItemDetail } from './components/ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
+import Loader from "react-loader-spinner";
 
 const useStyles = makeStyles((theme) => itemDetailContainerStyle(theme));
 
@@ -12,6 +13,7 @@ const getItem = () => {
             [
                 {
                     id: "1",
+                    catId: "9",
                     title: "Almohada",
                     description: "Comoda como ninguna",
                     price: "$800",
@@ -20,6 +22,7 @@ const getItem = () => {
                 },
                 {
                     id: "2",
+                    catId: "1",
                     title: "Sabana",
                     description: "Muy linda y suave",
                     price: "$4500",
@@ -28,6 +31,7 @@ const getItem = () => {
                 },
                 {
                     id: "3",
+                    catId: "2",
                     title: "Acolchado",
                     description: "Es hermoso y pachoncito",
                     price: "$5200",
@@ -36,6 +40,7 @@ const getItem = () => {
                 },
                 {
                     id: "4",
+                    catId: "3",
                     title: "Frazada Iglu",
                     description: "Abriga como los dioses",
                     price: "$870",
@@ -44,6 +49,7 @@ const getItem = () => {
                 },
                 {
                     id: "5",
+                    catId: "5",
                     title: "Toalla",
                     description: "Seca barbaro",
                     price: "$1500",
@@ -52,6 +58,7 @@ const getItem = () => {
                 },
                 {
                     id: "6",
+                    catId: "4",
                     title: "Cubrecama",
                     description: "Te deja la cama hermosa",
                     price: "$5350",
@@ -60,6 +67,7 @@ const getItem = () => {
                 },
                 {
                     id: "7",
+                    catId: "8",
                     title: "Repasador",
                     description: "Repasa increible",
                     price: "$500",
@@ -68,6 +76,7 @@ const getItem = () => {
                 },
                 {
                     id: "8",
+                    catId: "1",
                     title: "Sabana rayada",
                     description: "Es igual a la otra pero rayada",
                     price: "$4300",
@@ -76,6 +85,7 @@ const getItem = () => {
                 },
                 {
                     id: "9",
+                    catId: "9",
                     title: "Almohada inteligente",
                     description: "Increiblemente sabe hablar",
                     price: "$1200",
@@ -84,6 +94,7 @@ const getItem = () => {
                 },
                 {
                     id: "10",
+                    catId: "3",
                     title: "Frazada polar",
                     description: "Te podes ir al polo sur tranquilo con esta",
                     price: "$2400",
@@ -99,10 +110,13 @@ export const ItemDetailContainer = () => {
     const classes = useStyles();
     const { id } = useParams();
     const [productos, setProductos] = useState([]);
+    const [loader,setLoader] = useState(false);
 
     useEffect(() => {
-        getItem().then(
-            data => setProductos(data)
+        setLoader(true)
+        return getItem().then(
+            data => {setProductos(data)
+                    setLoader(false)}
         )
     },[]);
 
@@ -110,6 +124,14 @@ export const ItemDetailContainer = () => {
 
     return <section className={classes.container}>
        { productos.length !==0 && <ItemDetail item={filterById(productos)} /> }
+       {loader &&
+            <Loader
+            type="TailSpin"
+            color="var(--color-C)"
+            height={100}
+            width={100}
+        />
+        }
     </section>
 
 }

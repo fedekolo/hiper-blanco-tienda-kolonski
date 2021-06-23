@@ -10,7 +10,7 @@ export const CategoryList = ({ categories }) => {
     
     return <section className={classes.container}>
         {categories.map((category,i) => 
-            <Link to={`/`}>
+            <Link to={`/category/${category.id}`}>
                 <Category 
                     key={i}
                     category={category}
