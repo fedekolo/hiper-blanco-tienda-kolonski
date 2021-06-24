@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import { navBarStyle } from './NavBarStyle';
 import { UserHuge } from './components/UserHuge/UserHuge';
 import { Link } from 'react-router-dom';
+import { MenuListComposition } from './components/MenuListComposition/MenuListComposition';
 
 const useStyles = makeStyles((theme) => navBarStyle(theme));
 
@@ -19,7 +20,11 @@ export const NavBar = () => {
             </div>
             <ul>
               <li><Link to={'/'}>Inicio</Link></li>
-              <li><Link to={'/categorias'}>Categorias</Link></li>
+              <li>
+                <MenuListComposition>
+                  Categorias
+                </MenuListComposition>
+              </li>
               <li>Tienda</li>
               <li>Local</li>
               <li>Contacto</li>
