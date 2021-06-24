@@ -7,6 +7,8 @@ import { MenuListComposition } from './components/MenuListComposition/MenuListCo
 
 const useStyles = makeStyles((theme) => navBarStyle(theme));
 
+const itemsMenu = ['Inicio','Categorias','Tienda','Local','Contacto'];
+
 export const NavBar = () => {
     const classes = useStyles();
     
@@ -19,15 +21,15 @@ export const NavBar = () => {
               </div>
             </div>
             <ul>
-              <li><Link to={'/'}>Inicio</Link></li>
+              <li><Link to={'/'}>{itemsMenu[0]}</Link></li>
               <li>
-                <MenuListComposition>
-                  Categorias
+                <MenuListComposition itemsMenu={itemsMenu}>
+                {itemsMenu[1]}
                 </MenuListComposition>
               </li>
-              <li>Tienda</li>
-              <li>Local</li>
-              <li>Contacto</li>
+              <li>{itemsMenu[2]}</li>
+              <li>{itemsMenu[3]}</li>
+              <li>{itemsMenu[4]}</li>
             </ul>
             <UserHuge />
           </nav>;
