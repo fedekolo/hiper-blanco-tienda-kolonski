@@ -1,11 +1,15 @@
 import { makeStyles } from '@material-ui/core';
 import { itemDetailStyle } from './ItemDetailStyle';
 import { ItemDetailControl } from '../ItemDetailControl/ItemDetailControl';
+import React,{useState} from 'react';
 
 const useStyles = makeStyles((theme) => itemDetailStyle(theme));
 
 export const ItemDetail = ({ item }) => {
     const classes = useStyles();
+    const [salesCount,setSalesCount] = useState();
+
+    const onAdd = quantityToAdd => setSalesCount(quantityToAdd);
 
     return <section className={classes.container}>
         <div className={classes.img}>
@@ -18,7 +22,7 @@ export const ItemDetail = ({ item }) => {
                 <span>{item[0].price}</span>
             </div>
             <div className={classes.itemDetailControl}>
-                <ItemDetailControl item={item} />
+                <ItemDetailControl item={item} changeSale={onAdd} />
             </div>
         </div>
     </section>

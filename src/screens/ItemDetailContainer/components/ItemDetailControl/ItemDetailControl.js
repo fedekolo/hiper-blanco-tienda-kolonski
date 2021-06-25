@@ -5,15 +5,18 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-import { ItemCount } from '../ItemCount/ItemCount'
+import { ItemCount } from '../ItemCount/ItemCount';
+import React,{useState} from 'react';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => itemDetailControlStyle(theme));
 
-export const ItemDetailControl = ({ item }) => {
+export const ItemDetailControl = ({ item, onAdd }) => {
     const classes = useStyles();
+    const [addCart,setAddCart] = useState(true);
 
     return <section className={classes.container}>
-        <div>
+        {addCart && <div>
             <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel id="demo-simple-select-outlined-label">Color</InputLabel>
                 <Select
@@ -27,11 +30,23 @@ export const ItemDetailControl = ({ item }) => {
                     )}
                 </Select>
             </FormControl>
-            <ItemCount stock="8" initial="1" />
-        </div>
-        <Button variant="contained" disableElevation>
+            <ItemCount stock="8" initial="1" onAdd={onAdd} />
+        </div>}
+        {addCart ? 
+        <Button variant="contained" disableElevation onClick={e => setAddCart(false)}>
             Agregar al carrito
+        </Button> :
+        <>
+        <Link to={'/cart'}>
+            <Button variant="contained" disableElevation>
+                Finalizar la compra
+            </Button>
+        </Link>
+        <Button variant="contained" disableElevation onClick={e => setAddCart(true)}>
+            Cancelar compra
         </Button>
+        </>
+        }
     </section>
 
 }

@@ -17,6 +17,11 @@ export const itemDetailControlStyle = theme => {
                 color: "white",
                 width: "100%"
             },
+            "& > Link > Button": {
+                backgroundColor: "var(--color-C)",
+                color: "white",
+                width: "100%"
+            },
             "@media (max-width: 1000px)": {
                 gap: "1rem",
                 "& > div": {
