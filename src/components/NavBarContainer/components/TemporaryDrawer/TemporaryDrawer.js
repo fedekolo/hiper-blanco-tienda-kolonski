@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -6,21 +6,104 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import { Home,Store,FormatListBulleted,Shop,Message,ExpandLess,ExpandMore,LabelImportant} from '@material-ui/icons';
+import { Link } from 'react-router-dom';
+import Collapse from '@material-ui/core/Collapse';
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme) => ({
   list: {
     width: 250,
   },
   fullList: {
     width: 'auto',
   },
-});
+  nested: {
+    paddingLeft: theme.spacing(4),
+  }
+}));
+
+const itemsMenu = [
+  {
+    title: "Inicio",
+    icon: <Home />,
+    link: "/"
+  },
+  {
+    title: "Tienda",
+    icon: <Shop />,
+    link: "/tienda"
+  },
+  {
+    title: "Local",
+    icon: <Store />,
+    link: "/local"
+  },
+  {
+    title: "Contacto",
+    icon: <Message />,
+    link: "/contacto"
+  },
+  {
+    title: "Categorias",
+    icon: <FormatListBulleted />,
+    link: "/categorias"
+  }
+];
+
+const categories = [
+  {
+    title: "Sabanas",
+    icon: <LabelImportant />,
+    link: "/category/1"
+  },
+  {
+    title: "Acolchados",
+    icon: <LabelImportant />,
+    link: "/category/2"
+  },
+  {
+    title: "Frazadas",
+    icon: <LabelImportant />,
+    link: "/category/3"
+  },
+  {
+    title: "Cubrecamas",
+    icon: <LabelImportant />,
+    link: "/category/4"
+  },
+  {
+    title: "Toallas y toallones",
+    icon: <LabelImportant />,
+    link: "/category/5"
+  },
+  {
+    title: "Decoración",
+    icon: <LabelImportant />,
+    link: "/category/6"
+  },
+  {
+    title: "Baño",
+    icon: <LabelImportant />,
+    link: "/category/7"
+  },
+  {
+    title: "Cocina",
+    icon: <LabelImportant />,
+    link: "/category/8"
+  },
+  {
+    title: "Almohadas",
+    icon: <LabelImportant />,
+    link: "/category/9"
+  }
+]
 
 export const TemporaryDrawer = ({children}) => {
   const classes = useStyles();
-  const [state, setState] = React.useState({
+  const [open, setOpen] = useState(false);
+
+  const [state, setState] = useState({
     top: false,
     left: false,
     bottom: false,
@@ -35,6 +118,10 @@ export const TemporaryDrawer = ({children}) => {
     setState({ ...state, [anchor]: open });
   };
 
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
   const list = (anchor) => (
     <div
       className={clsx(classes.list, {
@@ -45,12 +132,36 @@ export const TemporaryDrawer = ({children}) => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inicio','Categorias','Tienda','Local','Contacto'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
+        {itemsMenu.map((item, i) => (
+          <>
+            {item.title === "Categorias" ? 
+                <ListItem button key={i} onClick={handleClick}>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.title} />
+                  {open ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+              :
+              <Link to={item.link}>
+                <ListItem button key={i}>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.title} />
+                </ListItem>
+              </Link>
+            }
+          </> 
         ))}
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {categories.map((category,i) => (
+              <Link to={category.link}>
+                <ListItem button className={classes.nested} key={i}>
+                  <ListItemIcon>{category.icon}</ListItemIcon>
+                  <ListItemText primary={category.title} />
+                </ListItem>
+              </Link>
+              ))}
+          </List>
+        </Collapse>
       </List>
     </div>
   );

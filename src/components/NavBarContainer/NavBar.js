@@ -24,7 +24,7 @@ export const NavBar = () => {
               <li><Link to={'/'}>{itemsMenu[0]}</Link></li>
               <li>
                 <MenuListComposition itemsMenu={itemsMenu}>
-                {itemsMenu[1]}
+                  {itemsMenu[1]}
                 </MenuListComposition>
               </li>
               <li>{itemsMenu[2]}</li>
