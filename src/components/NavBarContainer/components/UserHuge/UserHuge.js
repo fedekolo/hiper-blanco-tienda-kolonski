@@ -3,6 +3,7 @@ import { userHugeStyle } from './UserHugeStyle'
 import { Search, AccountCircle, Menu } from '@material-ui/icons';
 import { CartWidget } from '../CartWidget/CartWidget';
 import { TemporaryDrawer } from '../TemporaryDrawer/TemporaryDrawer';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => userHugeStyle(theme));
 
@@ -15,6 +16,8 @@ export const UserHuge = () => {
         </TemporaryDrawer>
         <Search className={classes.btn} color="disabled" />
         <AccountCircle className={classes.btn} color="disabled" />
-        <CartWidget />        
+        <Link to={'/cart'}>
+            <CartWidget />        
+        </Link>
     </div>
 }

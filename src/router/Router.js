@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { NavBar } from '../components/NavBarContainer/NavBar';
 import { ItemDetailContainer } from '../screens/ItemDetailContainer/ItemDetailContainer';
 import { HomeContainer } from '../screens/HomeContainer/HomeContainer';
+import { CartContainer } from '../screens/CartContainer/CartContainer'
 
 export const Router = () => {
     return <BrowserRouter>
@@ -22,6 +23,9 @@ export const Router = () => {
             </Route>
             <Route path="/contacto">
                 <HomeContainer />
+            </Route>
+            <Route path="/cart">
+                <CartContainer />
             </Route>
             <Route path="/item/:id">
                 <ItemDetailContainer />
