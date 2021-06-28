@@ -135,16 +135,16 @@ export const TemporaryDrawer = ({children}) => {
         {itemsMenu.map((item, i) => (
           <>
             {item.title === "Categorias" ? 
-                <ListItem button key={i} onClick={handleClick}>
-                  <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.title} />
-                  {open ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
+                  <ListItem button key={i} onClick={handleClick}>
+                    <ListItemIcon key={i}>{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.title} key={i}/>
+                    {open ? <ExpandLess /> : <ExpandMore />}
+                  </ListItem>
               :
-              <Link to={item.link}>
+              <Link to={item.link} key={i}>
                 <ListItem button key={i}>
-                  <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.title} />
+                  <ListItemIcon key={i}>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.title} key={i} />
                 </ListItem>
               </Link>
             }
@@ -153,10 +153,10 @@ export const TemporaryDrawer = ({children}) => {
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             {categories.map((category,i) => (
-              <Link to={category.link}>
+              <Link to={category.link} key={i}>
                 <ListItem button className={classes.nested} key={i}>
-                  <ListItemIcon>{category.icon}</ListItemIcon>
-                  <ListItemText primary={category.title} />
+                  <ListItemIcon key={i}>{category.icon}</ListItemIcon>
+                  <ListItemText primary={category.title} key={i} />
                 </ListItem>
               </Link>
               ))}

@@ -1,29 +1,20 @@
 import { makeStyles } from '@material-ui/core';
-import { itemDetailStyle } from './ItemDetailStyle';
-import { ItemDetailControl } from '../ItemDetailControl/ItemDetailControl';
-import React,{useState} from 'react';
+import { cartListStyle } from './CartListStyle';
+import React,{useContext} from 'react';
+import { CartContext } from '../../../../context/CartContext';
+import { CartItem } from '../CartItem/CartItem';
 
-const useStyles = makeStyles((theme) => itemDetailStyle(theme));
+const useStyles = makeStyles((theme) => cartListStyle(theme));
 
-export const ItemDetail = ({ item }) => {
+export const CartList = () => {
     const classes = useStyles();
-    const [salesCount,setSalesCount] = useState();
-
-    const onAdd = quantityToAdd => setSalesCount(quantityToAdd);
+    const { cart } = useContext(CartContext);
 
     return <section className={classes.container}>
-        <div className={classes.img}>
-            <img src={item[0].pictureUrl} alt={item[0].description}/>
-        </div>
-        <div className={classes.infoProduct}>
-            <div>
-                <h2>{item[0].title}</h2>
-                <p>{item[0].description}</p>
-                <span>{item[0].price}</span>
-            </div>
-            <div className={classes.itemDetailControl}>
-                <ItemDetailControl item={item} changeSale={onAdd} />
-            </div>
+        <div>
+            {cart.map((producto,i) =>
+                <CartItem key={i} producto={producto} />
+            )}
         </div>
     </section>
 

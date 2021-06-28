@@ -1,52 +1,38 @@
 import { makeStyles } from '@material-ui/core';
-import { itemDetailControlStyle } from './ItemDetailControlStyle';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
-import { ItemCount } from '../ItemCount/ItemCount';
-import React,{useState} from 'react';
-import { Link } from 'react-router-dom';
+import { cartItemStyle } from './CartItemStyle';
+import React,{useContext} from 'react';
+import { CartContext } from '../../../../context/CartContext';
+import { Delete } from '@material-ui/icons';
 
-const useStyles = makeStyles((theme) => itemDetailControlStyle(theme));
+const useStyles = makeStyles((theme) => cartItemStyle(theme));
 
-export const ItemDetailControl = ({ item, onAdd }) => {
+export const CartItem = ({ producto }) => {
     const classes = useStyles();
-    const [addCart,setAddCart] = useState(true);
+    const { removeItem } = useContext(CartContext);
 
-    return <section className={classes.container}>
-        {addCart && <div>
-            <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="demo-simple-select-outlined-label">Color</InputLabel>
-                <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={item[0].colors}
-                label="Color"
-                >
-                    {item[0].colors.map((color,i) => 
-                        <MenuItem value={color} key={i}>{color}</MenuItem>
-                    )}
-                </Select>
-            </FormControl>
-            <ItemCount stock="8" initial="1" onAdd={onAdd} />
-        </div>}
-        {addCart ? 
-        <Button variant="contained" disableElevation onClick={e => setAddCart(false)}>
-            Agregar al carrito
-        </Button> :
-        <>
-        <Link to={'/cart'}>
-            <Button variant="contained" disableElevation>
-                Finalizar la compra
-            </Button>
-        </Link>
-        <Button variant="contained" disableElevation onClick={e => setAddCart(true)}>
-            Cancelar compra
-        </Button>
-        </>
-        }
-    </section>
+    return <article className={classes.container}>
+        <div className={classes.info}>
+            <div className={classes.img}>
+                <img src={producto.pictureUrl} alt={producto.title}/>
+            </div>
+            <div>
+                <h2>{producto.title}</h2>
+                <h4>{producto.description}</h4>
+                <h4>{producto.colors}</h4>
+            </div>
+        </div>
+        <div className={classes.priceAction}>
+            <h2>{producto.price}</h2>
+            <Delete onClick={e => removeItem(producto.id)} color="disabled" className={classes.btnDelete} />
+        </div>
+    </article>
 
 }
+
+// id: "1",
+// catId: "9",
+// title: "Almohada",
+// description: "Comoda como ninguna",
+// price: "$800",
+// colors: ["blanco","terracota"],
+// pictureUrl: "https://hendel-r7d8odghj1.stackpathdns.com/media/catalog/product/cache/0c3e9ac8430b5a3e77d1544ae1698a10/1/2/12652.jpg"

@@ -43,5 +43,10 @@ export const itemDetailControlStyle = theme => {
         },
         formControl: {
             width: "8rem"
+        },
+        btn: {
+            '& :hover': {
+                color: "black"
+            }
         }
     })};

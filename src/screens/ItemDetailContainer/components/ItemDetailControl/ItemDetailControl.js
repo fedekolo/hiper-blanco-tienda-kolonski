@@ -12,12 +12,10 @@ import { CartContext } from '../../../../context/CartContext';
 
 const useStyles = makeStyles((theme) => itemDetailControlStyle(theme));
 
-export const ItemDetailControl = ({ item }) => {
+export const ItemDetailControl = ({ item, onAdd,salesCount }) => {
     const classes = useStyles();
     const [addCart,setAddCart] = useState(true);
     const { addItem } = useContext(CartContext);
-    const [salesCount,setSalesCount] = useState();
-    const onAdd = (quantityToAdd) => setSalesCount(quantityToAdd);
 
     return <section className={classes.container}>
         {addCart && <div>
@@ -37,16 +35,16 @@ export const ItemDetailControl = ({ item }) => {
             <ItemCount stock="8" initial="1" onAdd={onAdd} />
         </div>}
         {addCart ? 
-        <Button variant="contained" disableElevation onClick={e => setAddCart(false)}>
+        <Button variant="contained" disableElevation onClick={e => setAddCart(false)} className={classes.btn}>
             Agregar al carrito
         </Button> :
         <>
         <Link to={'/cart'}>
-            <Button variant="contained" disableElevation onClick={e => addItem(item,salesCount)}>
+            <Button variant="contained" disableElevation onClick={e => addItem(item,salesCount)} className={classes.btn}>
                 Finalizar la compra
             </Button>
         </Link>
-        <Button variant="contained" disableElevation onClick={e => setAddCart(true)}>
+        <Button variant="contained" disableElevation onClick={e => setAddCart(true)} className={classes.btn}>
             Cancelar compra
         </Button>
         </>

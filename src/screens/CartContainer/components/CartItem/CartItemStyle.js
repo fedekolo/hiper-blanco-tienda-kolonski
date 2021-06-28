@@ -1,47 +1,39 @@
-export const itemDetailControlStyle = theme => {
+export const cartItemStyle = theme => {
     return ({
         container: {
-            height: "100%",
-            width: "100%",
             display: "flex",
-            flexDirection: "column",
+            width: "100%",
+            height: "15rem",
+            justifyContent: "space-between",
+            borderTop: "2px solid var(--color-B)",
+            paddingTop: "2rem",
+        },
+        info: {
+            display: "flex"
+        },
+        img: {
+            width: "10rem",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
             alignItems: "center",
-            gap: "2rem",
-            "& > div": {
-                display: "flex",
-                width: "100%",
-                justifyContent: "space-between",
-            },
-            "& > Button": {
-                backgroundColor: "var(--color-C)",
-                color: "white",
-                width: "100%"
-            },
-            "& > Link > Button": {
-                backgroundColor: "var(--color-C)",
-                color: "white",
-                width: "100%"
-            },
-            "@media (max-width: 1000px)": {
-                gap: "1rem",
-                "& > div": {
-                    flexDirection: "column",
-                    alignItems: "center",
-                    gap: ".5rem"
-                }
-            },
-            "@media (max-width: 850px)": {
-                "& > div": {
-                    flexDirection: "row"
-                }
-            },
-            "@media (max-width: 430px)": {
-                "& > div": {
-                    flexDirection: "column"
-                }
+            '& img': {
+                width: "auto",
+                height: "90%",
+                marginRight: "2rem"
             }
         },
-        formControl: {
-            width: "8rem"
+        priceAction: {
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column"
+        },
+        btnDelete: {
+            transform: 'scale(1.3)',
+            '&:hover': {
+                color: 'var(--color-C)',
+                cursor: 'pointer',
+                transform: 'scale(1.4)'
+            }
         }
     })};
