@@ -12,7 +12,6 @@ export const ItemCount = ({ stock, initial, onAdd }) => {
 
     const sumarCantidad = () => {
         contador<stock ? setContador(contador + 1) : setContador(contador);
-        
     }
 
     const restarCantidad = () => {

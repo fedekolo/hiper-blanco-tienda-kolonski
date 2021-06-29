@@ -3,56 +3,45 @@ import React, {createContext,useState} from "react";
 export const CartContext = createContext();
 
 export const CartComponentContext = props => {
-    const [cart,setCart] = useState([
-        {
-            id: "1",
-            catId: "9",
-            title: "Almohada",
-            description: "Comoda como ninguna",
-            price: "$800",
-            colors: ["blanco","terracota"],
-            pictureUrl: "https://hendel-r7d8odghj1.stackpathdns.com/media/catalog/product/cache/0c3e9ac8430b5a3e77d1544ae1698a10/1/2/12652.jpg"
-        },
-        {
-            id: "2",
-            catId: "1",
-            title: "Sabana",
-            description: "Muy linda y suave",
-            price: "$4500",
-            colors: ["blanco","terracota"],
-            pictureUrl: "https://http2.mlstatic.com/D_NQ_NP_798312-MLA41192767859_032020-V.jpg"
-        },
-        {
-            id: "3",
-            catId: "2",
-            title: "Acolchado",
-            description: "Es hermoso y pachoncito",
-            price: "$5200",
-            colors: ["blanco","terracota"],
-            pictureUrl: "https://arredo.vteximg.com.br/arquivos/ids/206004-1000-1000/20021U02022-AP_0.jpg"
-        }
-    ]);
-    const [isInCart,setIsInCart] = useState();
+    const [cart,setCart] = useState([]);
 
     const addItem = (item,quantity) => {
-        const itemsInCart = cart.filter(producto => producto.id === item[0].id);
-        itemsInCart==null ? setIsInCart(false) : setIsInCart(true);
+        const itemsInCart = cart.filter(producto => producto.item[0].id === item[0].id); //filtro para saber si el mismo producto está en el carrito
 
-        if (isInCart) {
-            cart.filter(producto => producto.id === item[0].id).quantity = cart.filter(producto => producto.id === item[0].id).quantity + quantity;
-            setCart([cart]);
-        } else {
+        if (itemsInCart.length===0 && cart.length===0) {
+            //si el producto no está en el carrito y el carrito está vacio, se introduce el nuevo producto en el carrito
+            
             setCart([
-                {...cart}
+                {
+                item: item,
+                quantity: quantity
+                }
+            ])
+        } else if (itemsInCart.length===0 && cart.length>0) {
+            //si el producto no está en el carrito y el carrito tiene otros productos, se introduce el nuevo producto en el carrito seguido de los que ya estaban
+            
+            setCart([
+                ...cart
                 ,{
                 item: item,
                 quantity: quantity
                 }
             ])
+        } else {
+            //si el producto está en el carrito y el carrito tiene otros productos, se cambia la cantidad de ese producto que ya se encuentra en el carrito (FALTA TERMINAR DE DESARROLLAR)
+            
+            // cart.filter(producto => producto.item[0].id === item[0].id)[0].quantity = cart.filter(producto => producto.id === item[0].id).quantity + quantity
+            // setCart([cart]);
+            // console.log(cart.filter(producto => producto.item[0].id === item[0].id)[0].quantity)
         }
-        console.log(isInCart)
-        console.log(itemsInCart)
+
+        //COMPROBACIONES
+        console.log(itemsInCart.length===0)
+        // console.log(cart.length===0)
+        // console.log(item)
+        // console.log(itemsInCart)
         console.log(cart)
+        console.log(quantity)
 
     }
 
