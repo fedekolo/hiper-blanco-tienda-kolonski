@@ -12,9 +12,16 @@ export const CartList = () => {
 
     return <section className={classes.container}>
         <div>
-            {cart.map((producto,i) =>
+            {
+            cart.length===0 ?
+            <>
+            <h2>No hay productos por mostrar</h2>
+            <CartItem producto={undefined} />
+            </> :
+            cart.map((producto,i) =>
                 <CartItem key={i} producto={producto} />
-            )}
+            )
+            }
         </div>
     </section>
 

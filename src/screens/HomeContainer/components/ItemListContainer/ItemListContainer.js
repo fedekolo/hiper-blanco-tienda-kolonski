@@ -4,6 +4,7 @@ import { itemListContainerStyle } from './ItemListContainerStyle';
 import { ItemList } from './components/ItemList/ItemList';
 import Loader from "react-loader-spinner";
 import { useParams } from 'react-router-dom';
+import { dataBase } from '../../../../Firebase/firebase';
 
 const useStyles = makeStyles((theme) => itemListContainerStyle(theme));
 

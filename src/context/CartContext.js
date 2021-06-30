@@ -36,17 +36,17 @@ export const CartComponentContext = props => {
         }
 
         //COMPROBACIONES
-        console.log(itemsInCart.length===0)
+        // console.log(itemsInCart.length===0)
         // console.log(cart.length===0)
         // console.log(item)
         // console.log(itemsInCart)
-        console.log(cart)
-        console.log(quantity)
+        // console.log(cart)
+        // console.log(quantity)
 
     }
 
     const removeItem = (itemId) => {
-        const itemsNotRemove = cart.filter(producto => producto.item.id === !itemId);
+        const itemsNotRemove = cart.filter(producto => producto.item[0].id !== itemId);
         setCart([itemsNotRemove]);
     }
 

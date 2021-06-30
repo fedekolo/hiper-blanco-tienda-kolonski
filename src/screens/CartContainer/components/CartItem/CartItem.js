@@ -11,21 +11,26 @@ export const CartItem = ({ producto }) => {
     const { removeItem } = useContext(CartContext);
 
     return <article className={classes.container}>
-        <div className={classes.info}>
-            <div className={classes.img}>
-                <img src={producto.pictureUrl} alt={producto.title}/>
+            {producto!==undefined && 
+            <>
+            <div className={classes.info}>
+                <div className={classes.img}>
+                    <img src={producto.item[0].pictureUrl} alt={producto.item[0].title}/>
+                </div>
+                <div>
+                    <h2>{producto.item[0].title}</h2>
+                    <h4>{producto.item[0].description}</h4>
+                    <h4>{producto.item[0].colors}</h4>
+                </div>
             </div>
-            <div>
-                <h2>{producto.title}</h2>
-                <h4>{producto.description}</h4>
-                <h4>{producto.colors}</h4>
+            <div className={classes.priceAction}>
+                <h2>{producto.item[0].price}</h2>
+                <h3>Hay {producto.quantity} unidad/es</h3>
+                <Delete onClick={e => removeItem(producto.item[0].id)} color="disabled" className={classes.btnDelete} />
             </div>
-        </div>
-        <div className={classes.priceAction}>
-            <h2>{producto.price}</h2>
-            <Delete onClick={e => removeItem(producto.id)} color="disabled" className={classes.btnDelete} />
-        </div>
-    </article>
+            </>
+            }       
+        </article>
 
 }
 
