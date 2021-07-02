@@ -18,7 +18,7 @@ export const ItemDetail = ({ item }) => {
             <div>
                 <h2>{item[0].title}</h2>
                 <p>{item[0].description}</p>
-                <span>{item[0].price}</span>
+                <span>${item[0].price}</span>
             </div>
             <div className={classes.itemDetailControl}>
                 <ItemDetailControl item={item} onAdd={onAdd} salesCount={salesCount} />

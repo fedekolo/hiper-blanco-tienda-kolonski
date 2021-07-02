@@ -10,7 +10,7 @@ export const Item = ({ item }) => {
         <img src={item.pictureUrl} alt={item.description}/>
         <div>
             <h3>{item.title}</h3>
-            <span>{item.price}</span>
+            <span>${item.price}</span>
         </div>
     </article>
 

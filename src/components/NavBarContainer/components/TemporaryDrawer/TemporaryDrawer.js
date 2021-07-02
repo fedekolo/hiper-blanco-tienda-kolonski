@@ -135,18 +135,18 @@ export const TemporaryDrawer = ({children}) => {
         {itemsMenu.map((item, i) => (
           <>
             {item.title === "Categorias" ? 
-                  <ListItem button key={i} onClick={handleClick}>
-                    <ListItemIcon key={i}>{item.icon}</ListItemIcon>
-                    <ListItemText primary={item.title} key={i}/>
-                    {open ? <ExpandLess /> : <ExpandMore />}
-                  </ListItem>
-              :
-              <Link to={item.link} key={i}>
-                <ListItem button key={i}>
-                  <ListItemIcon key={i}>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.title} key={i} />
+                <ListItem button onClick={handleClick}>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.title}/>
+                  {open ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
-              </Link>
+              :
+                <Link to={item.link}>
+                  <ListItem button>
+                    <ListItemIcon>{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.title} />
+                  </ListItem>
+                </Link>
             }
           </> 
         ))}

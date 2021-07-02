@@ -5,11 +5,18 @@ export const cartItemStyle = theme => {
             width: "100%",
             height: "15rem",
             justifyContent: "space-between",
-            borderTop: "2px solid var(--color-B)",
-            paddingTop: "2rem",
+            borderBottom: "2px solid var(--color-B)",
+            // "@media (max-width: 800px)": {
+            //     flexDirection: "column"
+            // }
         },
         info: {
-            display: "flex"
+            display: "flex",
+            gap: "3rem",
+            marginLeft: "3rem",
+            // "@media (max-width: 800px)": {
+            //     flexDirection: "column"
+            // }
         },
         img: {
             width: "10rem",
@@ -20,13 +27,26 @@ export const cartItemStyle = theme => {
             '& img': {
                 width: "auto",
                 height: "90%",
-                marginRight: "2rem"
-            }
+                boxShadow: '1px 1px 10px var(--color-B)'
+            },
+            // "@media (max-width: 800px)": {
+            //     width: "100%",
+            //     height: "20rem",
+            //     "& img": {
+            //         width: "auto",
+            //         height: "90%",
+            //     }
+            // }
         },
         priceAction: {
             display: "flex",
-            alignItems: "center",
-            flexDirection: "column"
+            alignItems: "flex-end",
+            flexDirection: "column",
+            marginRight: "2rem",
+            justifyContent: "flex-start",
+            "& > h2": {
+                marginBottom: 0
+            }
         },
         btnDelete: {
             transform: 'scale(1.3)',

@@ -11,10 +11,23 @@ export const cartListStyle = theme => {
             padding: "1rem",
             flexDirection: "column",
             boxSizing: "border-box",
+            marginBottom: "2rem",
             // padding: "3rem 5rem",
             gap: "2rem",
             "& > div": {
-                width: "100%"
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                borderTop: "3px solid var(--color-B)",
+                alignItems: "center",
+                "& > h2": {
+                    textAlign: "center"
+                }
+            },
+            "& > h1": {
+                fontSize: "30px",
+                marginBottom: 0
             }
     }
 })};

@@ -40,7 +40,7 @@ export const ItemDetailControl = ({ item, onAdd,salesCount }) => {
         </Button> :
         <>
         <Link to={'/cart'}>
-            <Button variant="contained" disableElevation onClick={e => addItem(item,salesCount)} className={classes.btn}>
+            <Button variant="contained" disableElevation onClick={e => addItem(item[0],salesCount)} className={classes.btn}>
                 Finalizar la compra
             </Button>
         </Link>
