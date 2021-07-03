@@ -23,7 +23,6 @@ export const CartList = () => {
             {
             cart.length===0 ?
             <>
-            {/* <CartItem producto={undefined} /> */}
             <h2>No hay productos por mostrar</h2>
             <Link to="/">
                 <Button variant="contained" disableElevation>

@@ -11,8 +11,6 @@ export const CartItem = ({ producto }) => {
     const { removeItem } = useContext(CartContext);
 
     return <article className={classes.container}>
-            {producto!==undefined && 
-            <>
             <div className={classes.info}>
                 <div className={classes.img}>
                     <img src={producto.item.pictureUrl} alt={producto.item.title}/>
@@ -28,8 +26,6 @@ export const CartItem = ({ producto }) => {
                 <h3>Hay {producto.quantity} unidad/es</h3>
                 <Delete onClick={e => removeItem(producto.item.id)} color="disabled" className={classes.btnDelete} />
             </div>
-            </>
-            }       
         </article>
 
 }

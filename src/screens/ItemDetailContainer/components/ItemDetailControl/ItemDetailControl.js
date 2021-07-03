@@ -6,16 +6,14 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { ItemCount } from '../ItemCount/ItemCount';
-import React,{useState,useContext} from 'react';
+import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../../../context/CartContext';
 
 const useStyles = makeStyles((theme) => itemDetailControlStyle(theme));
 
-export const ItemDetailControl = ({ item, onAdd,salesCount }) => {
+export const ItemDetailControl = ({ item, onAdd, addItem }) => {
     const classes = useStyles();
     const [addCart,setAddCart] = useState(true);
-    const { addItem } = useContext(CartContext);
 
     return <section className={classes.container}>
         {addCart && <div>
@@ -40,7 +38,7 @@ export const ItemDetailControl = ({ item, onAdd,salesCount }) => {
         </Button> :
         <>
         <Link to={'/cart'}>
-            <Button variant="contained" disableElevation onClick={e => addItem(item[0],salesCount)} className={classes.btn}>
+            <Button variant="contained" disableElevation onClick={e => addItem()} className={classes.btn}>
                 Finalizar la compra
             </Button>
         </Link>

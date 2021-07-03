@@ -29,26 +29,21 @@ export const CartComponentContext = props => {
             ])
         } else {
             //si el producto está en el carrito y el carrito tiene otros productos, se cambia la cantidad de ese producto que ya se encuentra en el carrito (FALTA TERMINAR DE DESARROLLAR)
-            
-            // cart.filter(producto => producto.item[0].id === item[0].id)[0].quantity = cart.filter(producto => producto.id === item[0].id).quantity + quantity
-            // setCart([cart]);
-            // console.log(cart.filter(producto => producto.item[0].id === item[0].id)[0].quantity)
+            const cartNotRepeated = cart.filter(producto => producto.item.id !== item.id);            
+            const cartRepeated = cart.filter(producto => producto.item.id === item.id);
+            cartRepeated[0].quantity = cartRepeated[0].quantity + quantity;
+
+            setCart([
+                ...cartNotRepeated
+                ,
+                cartRepeated[0]
+            ])
         }
-
-        //COMPROBACIONES
-        // console.log(itemsInCart.length===0)
-        // console.log(cart.length===0)
-        // console.log(item)
-        // console.log(itemsInCart)
-        // console.log(cart)
-        // console.log(quantity)
-
     }
 
     const removeItem = (itemId) => {
         const itemsNotRemove = cart.filter(producto => producto.item.id !== itemId);
-        console.log(itemsNotRemove);
-        setCart([itemsNotRemove]);
+        setCart(itemsNotRemove);
     }
 
     const clear = () => {
