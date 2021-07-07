@@ -29,7 +29,7 @@ export const CartComponentContext = props => {
             ])
         } else {
             //si el producto está en el carrito y el carrito tiene otros productos, se cambia la cantidad de ese producto que ya se encuentra en el carrito (FALTA TERMINAR DE DESARROLLAR)
-            const cartNotRepeated = cart.filter(producto => producto.item.id !== item.id);            
+            const cartNotRepeated = cart.filter(producto => producto.item.id !== item.id);         
             const cartRepeated = cart.filter(producto => producto.item.id === item.id);
             cartRepeated[0].quantity = cartRepeated[0].quantity + quantity;
 
