@@ -129,25 +129,24 @@ export const ItemListContainer = () => {
         
     },[]);
 
-    // const filterById = productos => productos.filter(producto => producto.catId === catId);
+    const filterById = productos => productos.filter(producto => producto.catId === catId);
 
-    const filterById = (productos) => {
-        setLoader(true);
-        const itemCollection = dataBase.collection("productos");
-        const categorySelected = itemCollection.where('catId','==',catId);
+    // const filterById = (productos) => {
+    //     setLoader(true);
+    //     const itemCollection = dataBase.collection("productos");
+    //     const categorySelected = itemCollection.where('catId','==',catId);
         
-        categorySelected.get().then((doc) => {
-            if(doc.size === 0) {
-                console.log("No hay resultados para mostrar");
-            }
-            setProductos(doc.docs.map(doc => doc.data()));
-        }).catch((error) => {
-            console.log("Error en la carga de productos",error);
-        }).finally(() => {
-            setLoader(false);
-        })
-        
-    };
+    //     categorySelected.get().then((doc) => {
+    //         if(doc.size === 0) {
+    //             console.log("No hay resultados para mostrar");
+    //         }
+    //         setProductos(doc.docs.map(doc => doc.data()));
+    //     }).catch((error) => {
+    //         console.log("Error en la carga de productos",error);
+    //     }).finally(() => {
+    //         setLoader(false);
+    //     })
+    // };
 
     return <section className={classes.container}>
         { productos.length !==0 && <ItemList items={filterById(productos)} /> }
