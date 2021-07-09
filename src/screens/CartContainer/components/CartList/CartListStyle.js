@@ -23,6 +23,11 @@ export const cartListStyle = theme => {
                 alignItems: "center",
                 "& > h2": {
                     textAlign: "center"
+                },
+                "& > div": {
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem"
                 }
             },
             "& > h1": {

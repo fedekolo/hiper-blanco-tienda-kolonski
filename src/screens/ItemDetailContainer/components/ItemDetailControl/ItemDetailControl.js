@@ -22,10 +22,10 @@ export const ItemDetailControl = ({ item, onAdd, addItem }) => {
                 <Select
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
-                value={item[0].colors}
+                value={item.colors}
                 label="Color"
                 >
-                    {item[0].colors.map((color,i) => 
+                    {item.colors.map((color,i) => 
                         <MenuItem value={color} key={i}>{color}</MenuItem>
                     )}
                 </Select>

@@ -120,7 +120,11 @@ export const ItemListContainer = () => {
             if(doc.size === 0) {
                 console.log("No hay resultados para mostrar");
             }
-            setProductos(doc.docs.map(doc => doc.data()));
+            setProductos(doc.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            })))
+
         }).catch((error) => {
             console.log("Error en la carga de productos",error);
         }).finally(() => {

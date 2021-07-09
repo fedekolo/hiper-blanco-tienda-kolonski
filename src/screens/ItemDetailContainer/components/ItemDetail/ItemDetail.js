@@ -11,17 +11,17 @@ export const ItemDetail = ({ item }) => {
     const [salesCount,setSalesCount] = useState(1);
     const onAdd = (quantityToAdd) => setSalesCount(quantityToAdd);
     const { addItem } = useContext(CartContext);
-    const addItemAction = () => addItem(item[0],salesCount);
+    const addItemAction = () => addItem(item,salesCount);
 
     return <section className={classes.container}>
         <div className={classes.img}>
-            <img src={item[0].pictureUrl} alt={item[0].description}/>
+            <img src={item.pictureUrl} alt={item.description}/>
         </div>
         <div className={classes.infoProduct}>
             <div>
-                <h2>{item[0].title}</h2>
-                <p>{item[0].description}</p>
-                <span>${item[0].price}</span>
+                <h2>{item.title}</h2>
+                <p>{item.description}</p>
+                <span>${item.price}</span>
             </div>
             <div className={classes.itemDetailControl}>
                 <ItemDetailControl item={item} onAdd={onAdd} addItem={addItemAction} />
