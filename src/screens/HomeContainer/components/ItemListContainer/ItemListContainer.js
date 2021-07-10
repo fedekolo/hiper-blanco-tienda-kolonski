@@ -116,7 +116,9 @@ export const ItemListContainer = () => {
     useEffect(() => {
         setLoader(true);
         const itemCollection = dataBase.collection("productos");
-        itemCollection.get().then((doc) => {
+        const categorySelected = catId === undefined || catId === "10" ? itemCollection : itemCollection.where('catId','==',catId)
+
+        categorySelected.get().then((doc) => {
             if(doc.size === 0) {
                 console.log("No hay resultados para mostrar");
             }
@@ -131,31 +133,9 @@ export const ItemListContainer = () => {
             setLoader(false);
         })
         
-    },[]);
-
-    const filterById = productos => productos.filter(producto => producto.catId === catId);
-
-    // const filterById = (productos) => {
-    //     setLoader(true);
-    //     const itemCollection = dataBase.collection("productos");
-    //     const categorySelected = itemCollection.where('catId','==',catId);
-        
-    //     categorySelected.get().then((doc) => {
-    //         if(doc.size === 0) {
-    //             console.log("No hay resultados para mostrar");
-    //         }
-    //         setProductos(doc.docs.map(doc => doc.data()));
-    //     }).catch((error) => {
-    //         console.log("Error en la carga de productos",error);
-    //     }).finally(() => {
-    //         setLoader(false);
-    //     })
-    // };
+    },[catId]);
 
     return <section className={classes.container}>
-        { productos.length !==0 && <ItemList items={filterById(productos)} /> }
-        { catId === undefined && <ItemList items={productos} /> }
-        { catId === "10" && <ItemList items={productos} /> }
         {loader &&
             <Loader
             type="TailSpin"
@@ -164,6 +144,7 @@ export const ItemListContainer = () => {
             width={100}
         />
         }
+        <ItemList items={productos} />
     </section>
 
 }
