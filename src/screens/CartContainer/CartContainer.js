@@ -28,7 +28,10 @@ export const CartContainer = () => {
             price: price
         };
     
-        orders.set(newOrder).then(console.log('Orden enviada'))
+        orders.set(newOrder).then(orders.get().then((doc) => {
+            alert(`Compra realizada con éxito. Tu id es: ${doc.id}`)
+        }))
+
         .catch(err => {
             console.log(err);
         }).finally(() => {
