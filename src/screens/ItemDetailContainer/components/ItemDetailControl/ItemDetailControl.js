@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => itemDetailControlStyle(theme));
 export const ItemDetailControl = ({ item, onAdd, addItem }) => {
     const classes = useStyles();
     const [addCart,setAddCart] = useState(true);
+    const [colorSelected,setColorSelected] = useState();
 
     return <section className={classes.container}>
         {addCart && <div>
@@ -22,8 +23,10 @@ export const ItemDetailControl = ({ item, onAdd, addItem }) => {
                 <Select
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
-                value={item.colors}
                 label="Color"
+                SelectDisplayProps={item.color}
+                onChange={e => setColorSelected(e.target.value)}
+                defaultValue = ""
                 >
                     {item.colors.map((color,i) => 
                         <MenuItem value={color} key={i}>{color}</MenuItem>
@@ -38,7 +41,7 @@ export const ItemDetailControl = ({ item, onAdd, addItem }) => {
         </Button> :
         <>
         <Link to={'/cart'}>
-            <Button variant="contained" disableElevation onClick={e => addItem()} className={classes.btn}>
+            <Button variant="contained" disableElevation onClick={e => addItem(colorSelected)} className={classes.btn}>
                 Finalizar la compra
             </Button>
         </Link>

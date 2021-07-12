@@ -18,7 +18,7 @@ export const CartItem = ({ producto }) => {
                 <div>
                     <h2>{producto.item.title}</h2>
                     <h4>{producto.item.description}</h4>
-                    <h4>Color: {producto.item.colors}</h4>
+                    <h4>Color: {producto.color}</h4>
                 </div>
             </div>
             <div className={classes.priceAction}>

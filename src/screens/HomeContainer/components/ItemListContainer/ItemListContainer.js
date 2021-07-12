@@ -116,7 +116,7 @@ export const ItemListContainer = () => {
     useEffect(() => {
         setLoader(true);
         const itemCollection = dataBase.collection("productos");
-        const categorySelected = catId === undefined || catId === "10" ? itemCollection : itemCollection.where('catId','==',catId)
+        const categorySelected = catId === undefined || catId === "10" ? itemCollection : itemCollection.where('catId','==',catId);
 
         categorySelected.get().then((doc) => {
             if(doc.size === 0) {

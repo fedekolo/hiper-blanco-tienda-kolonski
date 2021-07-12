@@ -11,7 +11,7 @@ export const ItemDetail = ({ item }) => {
     const [salesCount,setSalesCount] = useState(1);
     const onAdd = (quantityToAdd) => setSalesCount(quantityToAdd);
     const { addItem } = useContext(CartContext);
-    const addItemAction = () => addItem(item,salesCount);
+    const addItemAction = (color) => addItem(item,color,salesCount);
 
     return <section className={classes.container}>
         <div className={classes.img}>

@@ -5,7 +5,7 @@ export const CartContext = createContext();
 export const CartComponentContext = props => {
     const [cart,setCart] = useState([]);
 
-    const addItem = (item,quantity) => {
+    const addItem = (item,color,quantity) => {
         const itemsInCart = cart.filter(producto => producto.item.id === item.id); //filtro para saber si el mismo producto está en el carrito
 
         if (itemsInCart.length===0 && cart.length===0) {
@@ -14,6 +14,7 @@ export const CartComponentContext = props => {
             setCart([
                 {
                 item: item,
+                color: color,
                 quantity: quantity
                 }
             ])
@@ -24,6 +25,7 @@ export const CartComponentContext = props => {
                 ...cart
                 ,{
                 item: item,
+                color: color,
                 quantity: quantity
                 }
             ])
@@ -46,11 +48,11 @@ export const CartComponentContext = props => {
         setCart(itemsNotRemove);
     }
 
-    const clear = () => {
+    const clearAll = () => {
         setCart([]);
     }
 
-  return <CartContext.Provider value={{ addItem,removeItem,clear,cart }}>
+  return <CartContext.Provider value={{ addItem,removeItem,clearAll,cart }}>
     {props.children}
   </CartContext.Provider>
 

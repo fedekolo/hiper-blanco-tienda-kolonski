@@ -5,20 +5,25 @@ import { CartContext } from '../../../../context/CartContext';
 import { CartItem } from '../CartItem/CartItem';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import { ModalOrder } from '../ModalOrder/ModalOrder';
 
 const useStyles = makeStyles((theme) => cartListStyle(theme));
 
-export const CartList = ({sendOrder}) => {
+export const CartList = ({sendOrder,closeModal}) => {
     const classes = useStyles();
-    const { cart } = useContext(CartContext);
-    const [name,setName] = useState();
-    const [phone,setPhone] = useState();
-    const [email,setEmail] = useState();
+    const { cart,clearAll } = useContext(CartContext);
+    const [openModal,setOpenModal] = useState(false);
     
     let totalPrice = 0;
     cart.map((producto) =>
             totalPrice = totalPrice + parseInt(producto.item.price)*producto.quantity
         )
+    
+    const sendOrderAction = (name,phone,email) => {
+        sendOrder(name,phone,email,cart,totalPrice);
+        setOpenModal(false);
+        clearAll();
+    }
 
     return <section className={classes.container}>
         <h1>CARRITO DE COMPRAS</h1>
@@ -39,16 +44,13 @@ export const CartList = ({sendOrder}) => {
             )}
             <h2>Precio total: ${totalPrice}</h2>
             <div>
-                <input placeholder="Nombre" onChange={e => setName(e.target.value)}></input>
-                <input placeholder="Telefono" onChange={e => setPhone(e.target.value)}></input>
-                <input placeholder="Mail" onChange={e => setEmail(e.target.value)}></input>
-                <Button variant="contained" disableElevation onClick={e => sendOrder(name,phone,email,cart,totalPrice)}>
+                <Button variant="contained" disableElevation onClick={e => setOpenModal(true)}>
                     Enviar orden
                 </Button>
             </div>
             </>
             }
         </div>
+        <ModalOrder openModal={openModal} setOpenModal={setOpenModal} sendOrderAction={sendOrderAction} />
     </section>
-
 }
