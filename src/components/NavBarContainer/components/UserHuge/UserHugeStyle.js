@@ -2,7 +2,8 @@ export const userHugeStyle = theme => {
     return ({
         container: {
             display: 'flex',
-            gap: '8px'
+            gap: '8px',
+            minWidth: "5rem"
         },
         btn: {
             '&:hover': {
@@ -20,6 +21,13 @@ export const userHugeStyle = theme => {
             },
             '@media (max-width: 625px)': {
                 display: 'block'
+            }
+        },
+        btnCart: {
+            position: "relative",
+            bottom: ".6rem",
+            '@media (max-width: 625px)': {
+                bottom: 0
             }
         }
     })

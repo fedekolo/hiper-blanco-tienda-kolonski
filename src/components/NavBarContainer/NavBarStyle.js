@@ -23,6 +23,9 @@ export const navBarStyle = theme => {
                     flexDirection: 'column',
                     alignItems: 'flex-start',
                     fontWeight: 'bold'
+                },
+                '@media (max-width: 625px)': {
+                    marginLeft: "2rem"
                 }
             },
             '& > ul': {
@@ -40,6 +43,7 @@ export const navBarStyle = theme => {
             },
             '@media (max-width: 625px)': {
                 boxSizing: 'border-box',
+                justifyContent: 'space-between',
                 '& > ul': {
                     display: 'none'
                 }

@@ -9,14 +9,18 @@ export const ItemList = ({ items }) => {
     const classes = useStyles();
 
     return <section className={classes.container}>
-        {items.map((producto,i) => 
-            <Link to={`/item/${producto.id}`} key={i}>
-                <Item 
-                    key={i}
-                    item={producto}
-                />
-            </Link>
-        )}
+        {
+            items===undefined ?
+            <h1>No hay productos para mostrar</h1> :
+            items.map((producto,i) => 
+                <Link to={`/item/${producto.id}`} key={i}>
+                    <Item 
+                        key={i}
+                        item={producto}
+                    />
+                </Link> 
+            )
+        }
     </section>
 
 }

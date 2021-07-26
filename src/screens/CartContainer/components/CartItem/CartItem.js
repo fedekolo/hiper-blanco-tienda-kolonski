@@ -23,7 +23,7 @@ export const CartItem = ({ producto }) => {
             </div>
             <div className={classes.priceAction}>
                 <h2>$ {producto.item.price} c/u</h2>
-                <h3>Hay {producto.quantity} unidad/es</h3>
+                <h3>Hay {producto.quantity} {producto.quantity>1 ? "unidades" : "unidad"}</h3>
                 <Delete onClick={e => removeItem(producto.item.id)} color="disabled" className={classes.btnDelete} />
             </div>
         </article>

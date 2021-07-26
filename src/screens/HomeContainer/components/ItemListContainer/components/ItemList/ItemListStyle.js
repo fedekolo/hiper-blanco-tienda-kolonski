@@ -4,6 +4,9 @@ export const itemListStyle = theme => {
             display: "flex",
             gap: "2rem",
             flexWrap: "wrap",
-            justifyContent: "center"
+            justifyContent: "center",
+            "& h1": {
+                fontSize: 30
+            }
         }
     })};

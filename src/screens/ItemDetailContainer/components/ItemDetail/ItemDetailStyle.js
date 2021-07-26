@@ -90,5 +90,18 @@ export const itemDetailStyle = theme => {
             "@media (max-width: 850px)": {
                 marginTop: "2rem"
             }
+        },
+        noFind: {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            "& img": {
+                width: "50%",
+                margin: "1rem auto"
+            },
+            "& h1": {
+                fontSize: 40,
+                margin: 0
+            }
         }
     })};

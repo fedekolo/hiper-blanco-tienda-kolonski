@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => itemDetailControlStyle(theme));
 
-export const ItemDetailControl = ({ item, onAdd, addItem }) => {
+export const ItemDetailControl = ({ item, onAdd, addItem,setOpenAlert }) => {
     const classes = useStyles();
     const [addCart,setAddCart] = useState(true);
     const [colorSelected,setColorSelected] = useState();
@@ -36,12 +36,12 @@ export const ItemDetailControl = ({ item, onAdd, addItem }) => {
             <ItemCount stock="8" initial="1" onAdd={onAdd} />
         </div>}
         {addCart ? 
-        <Button variant="contained" disableElevation onClick={e => setAddCart(false)} className={classes.btn}>
+        <Button variant="contained" disableElevation onClick={e => colorSelected===undefined ? setOpenAlert(true) : setAddCart(false)} className={classes.btn}>
             Agregar al carrito
         </Button> :
         <>
-        <Link to={'/cart'}>
-            <Button variant="contained" disableElevation onClick={e => addItem(colorSelected)} className={classes.btn}>
+        <Link to={'/cart'} className={classes.btnCompra}>
+            <Button variant="contained" disableElevation onClick={e => addItem(colorSelected)}>
                 Finalizar la compra
             </Button>
         </Link>

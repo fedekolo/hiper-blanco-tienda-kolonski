@@ -32,22 +32,22 @@ const itemsMenu = [
   {
     title: "Tienda",
     icon: <Shop />,
-    link: "/tienda"
+    link: "/"
   },
   {
     title: "Local",
     icon: <Store />,
-    link: "/local"
+    link: "/"
   },
   {
     title: "Contacto",
     icon: <Message />,
-    link: "/contacto"
+    link: "/"
   },
   {
     title: "Categorias",
     icon: <FormatListBulleted />,
-    link: "/categorias"
+    link: "/"
   }
 ];
 
@@ -128,7 +128,6 @@ export const TemporaryDrawer = ({children}) => {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
@@ -140,7 +139,7 @@ export const TemporaryDrawer = ({children}) => {
                   {open ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
               :
-                <Link to={item.link} key={i}>
+                <Link to={item.link} key={i} onClick={toggleDrawer(anchor, false)}>
                   <ListItem button>
                     <ListItemIcon>{item.icon}</ListItemIcon>
                     <ListItemText primary={item.title} />
@@ -150,10 +149,10 @@ export const TemporaryDrawer = ({children}) => {
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             {categories.map((category,i) => (
-              <Link to={category.link} key={i}>
-                <ListItem button className={classes.nested} key={i}>
-                  <ListItemIcon key={i}>{category.icon}</ListItemIcon>
-                  <ListItemText primary={category.title} key={i} />
+              <Link to={category.link} key={i} onClick={toggleDrawer(anchor, false)}>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>{category.icon}</ListItemIcon>
+                  <ListItemText primary={category.title} />
                 </ListItem>
               </Link>
               ))}

@@ -72,7 +72,7 @@ export const CategoriesContainer = () => {
         categoriesInfo().then(
             data => setCategories(data)
         )
-    },[]);
+    },[categories]);
 
     return <section className={classes.container}>
         <CategoryList categories={categories} />

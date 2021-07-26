@@ -9,7 +9,7 @@ import { ModalOrder } from '../ModalOrder/ModalOrder';
 
 const useStyles = makeStyles((theme) => cartListStyle(theme));
 
-export const CartList = ({sendOrder,closeModal}) => {
+export const CartList = ({sendOrder,loaderModal}) => {
     const classes = useStyles();
     const { cart,clearAll } = useContext(CartContext);
     const [openModal,setOpenModal] = useState(false);
@@ -44,13 +44,16 @@ export const CartList = ({sendOrder,closeModal}) => {
             )}
             <h2>Precio total: ${totalPrice}</h2>
             <div>
-                <Button variant="contained" disableElevation onClick={e => setOpenModal(true)}>
+                <Button variant="contained" size="large" disableRipple onClick={e => setOpenModal(true)}>
                     Enviar orden
+                </Button>
+                <Button variant="outlined" disableElevation onClick={e => clearAll()}>
+                    Limpiar carrito
                 </Button>
             </div>
             </>
             }
         </div>
-        <ModalOrder openModal={openModal} setOpenModal={setOpenModal} sendOrderAction={sendOrderAction} />
+        <ModalOrder openModal={openModal} setOpenModal={setOpenModal} sendOrderAction={sendOrderAction} loaderModal={loaderModal} />
     </section>
 }

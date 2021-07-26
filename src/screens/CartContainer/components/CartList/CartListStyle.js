@@ -12,7 +12,6 @@ export const cartListStyle = theme => {
             flexDirection: "column",
             boxSizing: "border-box",
             marginBottom: "2rem",
-            // padding: "3rem 5rem",
             gap: "2rem",
             "& > div": {
                 width: "100%",

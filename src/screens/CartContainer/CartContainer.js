@@ -4,18 +4,18 @@ import { CartList } from './components/CartList/CartList';
 import { dataBase } from '../../Firebase/firebase';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import Loader from "react-loader-spinner";
 import React,{useState} from 'react';
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => cartContainerStyle(theme));
 
 export const CartContainer = () => {
     const classes = useStyles();
-    const [loader,setLoader] = useState(false);
+    const [loaderModal,setLoaderModal] = useState(false);
 
     const sendOrder = (name,phone,email,cart,price) => {
 
-        setLoader(true);
+        setLoaderModal(true);
         const orders = dataBase.collection('orders').doc();
         const newOrder = {
             buyer: {
@@ -29,26 +29,25 @@ export const CartContainer = () => {
         };
     
         orders.set(newOrder).then(orders.get().then((doc) => {
-            alert(`Compra realizada con éxito. Tu id es: ${doc.id}`)
+            Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: `Compra realizada con éxito. Tu id es: ${doc.id}`,
+                showConfirmButton: true,
+                confirmButtonText: 'Confirmar',
+                confirmButtonColor: 'var(--color-C)'
+              })
         }))
 
         .catch(err => {
             console.log(err);
         }).finally(() => {
-            setLoader(false);
+            setLoaderModal(false);
         })
     
     }
 
      return <section className={classes.container}>
-         <CartList sendOrder={sendOrder} />
-         {loader &&
-            <Loader
-            type="TailSpin"
-            color="var(--color-C)"
-            height={100}
-            width={100}
-        />
-        }
+         <CartList sendOrder={sendOrder} loaderModal={loaderModal} />
      </section>
 }

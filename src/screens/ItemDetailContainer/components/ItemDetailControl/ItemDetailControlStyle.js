@@ -17,11 +17,6 @@ export const itemDetailControlStyle = theme => {
                 color: "white",
                 width: "100%"
             },
-            "& > Link > Button": {
-                backgroundColor: "var(--color-C)",
-                color: "white",
-                width: "100%"
-            },
             "@media (max-width: 1000px)": {
                 gap: "1rem",
                 "& > div": {
@@ -47,6 +42,12 @@ export const itemDetailControlStyle = theme => {
         btn: {
             '& :hover': {
                 color: "black"
+            }
+        },
+        btnCompra: {
+            width: "100%",
+            "& Button": {
+                width: "100%"
             }
         }
     })};
