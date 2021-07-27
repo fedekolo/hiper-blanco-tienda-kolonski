@@ -31,7 +31,8 @@ export const cartListStyle = theme => {
             },
             "& > h1": {
                 fontSize: "30px",
-                marginBottom: 0
+                marginBottom: 0,
+                textAlign: "center"
             }
     }
 })};

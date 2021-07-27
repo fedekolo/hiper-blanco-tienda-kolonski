@@ -8,7 +8,10 @@ export const footerContainerStyle = theme => {
             heigth: 'fit-content',
             boxShadow: '1px 1px 10px var(--color-B)',
             padding: '1rem 2rem',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
+            "@media (max-width: 600px)": {
+                flexDirection: "column"
+            }
         }
     })
 }

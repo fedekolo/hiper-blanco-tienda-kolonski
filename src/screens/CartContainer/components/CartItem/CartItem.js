@@ -15,7 +15,7 @@ export const CartItem = ({ producto }) => {
                 <div className={classes.img}>
                     <img src={producto.item.pictureUrl} alt={producto.item.title}/>
                 </div>
-                <div>
+                <div className={classes.infoDetail}>
                     <h2>{producto.item.title}</h2>
                     <h4>{producto.item.description}</h4>
                     <h4>Color: {producto.color}</h4>

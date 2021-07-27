@@ -9,12 +9,19 @@ export const contactInfoStyle = theme => {
             '& iframe': {
                 border: 0,
                 width: '100%',
-                height: '13rem'
+                height: '13rem',
+                "@media (max-width: 600px)": {
+                    marginBottom: "1rem"
+                }
             },
             '& div': {
                 display: 'flex',
                 gap: '1rem',
                 marginBottom: '1rem'
+            },
+            "@media (max-width: 600px)": {
+                width: "100%",
+                flexDirection: "column-reverse"
             }
         },
         btn: {

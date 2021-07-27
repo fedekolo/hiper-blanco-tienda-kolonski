@@ -32,3 +32,9 @@
   object-fit: contain;
   background-color: var(--color-background);
 }
+
+@media (max-width: 500px) {
+  .swiper-container {
+    display: none;
+  }
+}

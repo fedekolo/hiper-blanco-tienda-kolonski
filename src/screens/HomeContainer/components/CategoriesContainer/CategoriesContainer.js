@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { categoriesContainerStyle } from './CategoriesContainerStyle';
 import { CategoryList } from './components/CategoryList/CategoryList';
 
 const useStyles = makeStyles((theme) => categoriesContainerStyle(theme));
 
-const categoriesInfo = () => {
-    return new Promise ((resolve,reject) => {
-        setTimeout(() => resolve(
+const categories =
             [
                 {
                     id: "1",
@@ -57,22 +54,12 @@ const categoriesInfo = () => {
                 {
                     id: "10",
                     name: "Quitar filtro",
-                    pictureUrl: "https://as01.epimg.net/showroom/imagenes/2020/02/24/portada/1582552168_364525_1582552715_noticia_normal_recorte1.jpg"
+                    pictureUrl: "https://st.depositphotos.com/1888461/3115/i/600/depositphotos_31152539-stock-photo-abstract-background-grey-grunge-paper.jpg"
                 }
             ]
-        ),2000)
-    })
-}
 
 export const CategoriesContainer = () => {
     const classes = useStyles();
-    const [categories,setCategories] = useState([]);
-    
-    useEffect(() => {
-        categoriesInfo().then(
-            data => setCategories(data)
-        )
-    },[categories]);
 
     return <section className={classes.container}>
         <CategoryList categories={categories} />
