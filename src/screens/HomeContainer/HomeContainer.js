@@ -23,7 +23,7 @@ export const HomeContainer = () => {
         .catch(err => console.log(err));
     }
 
-    console.log(items)
+    console.log(items[0])
 
     return <div className={classes.container} id={'inicio'}>
         <CarrouselSwiper />

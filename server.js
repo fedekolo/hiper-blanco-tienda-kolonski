@@ -13,7 +13,7 @@ app.listen(PORT,()=>{
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
-app.use(cors());
+app.use(cors()); //permite la conexión con react
 
 // ENRUTADOR
-app.use('/productos',require('./routes/productos'));
+app.use('/productos',require('./routes/productos')); //enrutador de productos

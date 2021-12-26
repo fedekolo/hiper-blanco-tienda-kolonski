@@ -1,9 +1,11 @@
 // CONFIG INICIAL
 const express = require('express');
 const router = express.Router();
+const {listar} = require('../controller/productos');
 
-router.get('/listar',(req,res) => {
-    res.json('Prueba conexión back con react');
+router.get('/listar', async (req,res) => {
+    const productos = await listar();
+    res.json(productos);
 });
 
 module.exports = router;
