@@ -3,16 +3,24 @@ import { makeStyles } from '@material-ui/core';
 import { navBarStyle } from './NavBarStyle';
 import { UserHuge } from './components/UserHuge/UserHuge';
 import { Link } from 'react-router-dom';
-import { MenuListComposition } from './components/MenuListComposition/MenuListComposition';
-import ScrollTo from "react-scroll-into-view";
+import Axios from 'axios';
+import React,{useEffect, useState} from 'react';
 
 const useStyles = makeStyles((theme) => navBarStyle(theme));
 
-const itemsMenu = ['Inicio','Categorias','Tienda','Local','Contacto'];
-
-export const NavBar = ({ isInicio }) => {
+export const NavBar = () => {
     const classes = useStyles();
-    
+    const [user,setUser] = useState();
+
+    useEffect(() => {
+      Axios({
+        method: "POST",
+        withCredentials: true,
+        url: "http://localhost:8080/usuarios/sesion",
+        }).then(res => res.data===false ? setUser(false) : setUser(res.data))
+        .catch(err => console.log(err));
+    },[]);
+
     return <nav className={classes.container}>
             <div>
               <Link to={'/'}><img src={logo} alt='Logo Hiper Blanco'/></Link>
@@ -21,55 +29,17 @@ export const NavBar = ({ isInicio }) => {
                 <span>Blanco</span>
               </div>
             </div>
-              {
-                isInicio ?
-                  <ul>
-                    <li>
-                      <ScrollTo selector={'#inicio'}>
-                        {itemsMenu[0]}
-                      </ScrollTo>
-                    </li>
-                    <li>
-                      <MenuListComposition itemsMenu={itemsMenu}>
-                        {itemsMenu[1]}
-                      </MenuListComposition>
-                    </li>
-                    <li>
-                      <ScrollTo selector={'#tienda'}>
-                        {itemsMenu[2]}
-                      </ScrollTo>
-                    </li>
-                    <li>
-                      <ScrollTo selector={'#footer'}>
-                        {itemsMenu[3]}
-                      </ScrollTo>
-                    </li>
-                    <li>
-                      <ScrollTo selector={'#footer'}>
-                        {itemsMenu[4]}
-                      </ScrollTo>
-                    </li>
-                  </ul> :
-                  <ul>
-                    <li>
-                      <Link to={'/'}>{itemsMenu[0]}</Link>
-                    </li>
-                    <li>
-                      <MenuListComposition itemsMenu={itemsMenu}>
-                        {itemsMenu[1]}
-                      </MenuListComposition>
-                    </li>
-                    <li>
-                      <Link to={'/'}>{itemsMenu[2]}</Link>
-                    </li>
-                    <li>
-                      <Link to={'/'}>{itemsMenu[3]}</Link>
-                    </li>
-                    <li>
-                      <Link to={'/'}>{itemsMenu[4]}</Link>
-                    </li>
-                  </ul>
-              }
-            <UserHuge />
-          </nav>;
+            <ul>
+              <li>
+                <Link to={'/'}>Inicio</Link>
+              </li>
+              <li>
+                <Link to={'/store'}>Tienda</Link>
+              </li>
+              <li>
+                <Link to={'/contact'}>Contacto</Link>
+              </li>
+            </ul>
+            <UserHuge user={user!==undefined && user} />
+          </nav>
   }

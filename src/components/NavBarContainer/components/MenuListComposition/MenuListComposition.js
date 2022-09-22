@@ -7,20 +7,41 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import { AccountCircle, KeyboardArrowDown } from '@material-ui/icons';
+import Axios from "axios";
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   paper: {
     marginRight: theme.spacing(2),
   },
+  menuList: {
+    display: 'flex',
+    width: 'auto',
+    borderBottom: '3px var(--color-A) solid',
+    borderTop: '3px var(--color-A) solid',
+    '&:hover': {
+        borderBottom: '3px var(--color-C) solid',
+        cursor: 'pointer'                      
+    }
+}
 }));
 
-export const MenuListComposition = ({ children }) => {
+export const MenuListComposition = ({ user }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+
+  const getUserName = () => {
+    if(user) {
+      return user.map(e => e.nombre);
+    } else {
+      return 'Usuario';
+    }
+  };
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -30,7 +51,6 @@ export const MenuListComposition = ({ children }) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
 
@@ -39,7 +59,23 @@ export const MenuListComposition = ({ children }) => {
       event.preventDefault();
       setOpen(false);
     }
-  }
+  };
+
+const logout = () => {  
+  Axios({
+      method: "GET",
+      withCredentials: true,
+      url: "http://localhost:8080/usuarios/cerrarsesion",
+    }).catch(err => console.log(err))
+  Swal.fire({
+    position: 'top',
+    icon: 'success',
+    title: `Hasta luego ${user.map(e => e.nombre)}!`,
+    showConfirmButton: false,
+    timer: 2000
+  })
+  .then(() => window.location.replace("/"))
+}
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
@@ -53,15 +89,18 @@ export const MenuListComposition = ({ children }) => {
 
   return (
     <div className={classes.root}>
+      <div
+        ref={anchorRef}
+        aria-controls={open ? 'menu-list-grow' : undefined}
+        aria-haspopup="true"
+        onClick={handleToggle}
+        className={classes.menuList}
+      >
+        <AccountCircle/>
+        <span>{getUserName()}</span>
+        <KeyboardArrowDown/>
+      </div>
       <div>
-        <div
-          ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-        >
-          {children}
-        </div>
         <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow
@@ -71,15 +110,11 @@ export const MenuListComposition = ({ children }) => {
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem onClick={handleClose}><Link to={'/category/1'}>Sabanas</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to={'/category/2'}>Acolchados</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to={'/category/3'}>Frazadas</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to={'/category/4'}>Cubrecamas</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to={'/category/5'}>Toallas y toallones</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to={'/category/6'}>Decoracion</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to={'/category/7'}>Baño</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to={'/category/8'}>Cocina</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to={'/category/9'}>Almohadas</Link></MenuItem>
+                    { !user && <MenuItem onClick={handleClose}><Link to={'/singin'}>Iniciar Sesión</Link></MenuItem> }
+                    { !user && <MenuItem onClick={handleClose}><Link to={'/singup'}>Registrarse</Link></MenuItem> }
+                    { user && <MenuItem onClick={handleClose}><Link to={'/profile'}>Perfil</Link></MenuItem> }
+                    { user && <MenuItem onClick={handleClose}><Link to={'/orders'}>Compras</Link></MenuItem> }
+                    { user && <MenuItem onClick={e=>logout()}>Cerrar Sesión</MenuItem> }
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

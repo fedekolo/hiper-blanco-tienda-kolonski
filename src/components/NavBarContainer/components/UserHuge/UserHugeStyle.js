@@ -3,7 +3,7 @@ export const userHugeStyle = theme => {
         container: {
             display: 'flex',
             gap: '8px',
-            minWidth: "5rem"
+            width: 'auto'
         },
         btn: {
             '&:hover': {
@@ -24,8 +24,8 @@ export const userHugeStyle = theme => {
             }
         },
         btnCart: {
-            position: "relative",
-            bottom: ".6rem",
+            alignSelf: 'center',
+            width: '2rem',
             '@media (max-width: 625px)': {
                 bottom: 0
             }

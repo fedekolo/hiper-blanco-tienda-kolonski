@@ -1,63 +1,30 @@
 // CONFIG INICIAL
+const Carrito = require('../db/models/carrito');
 const Producto = require('../db/models/productos');
-const moment = require('moment');
 const conexionDB = require('../db/mongoConection'); // conexión con bd
-const { v4: uuidv4 } = require('uuid'); // paquete para crear IDs
-const {idSegunCategoria} = require('./categorias');
 
 // --- CONTROLADORES ---
 
-//listar todos los productos
-const listar = async () => {
+//listar todos los productos que contiene el carrito del usuario
+const listar = async (idUsuario) => {
     try {
         await conexionDB();
-        const productosFiltrados = await Producto.find({});
-        return productosFiltrados==undefined ? {} : productosFiltrados;
+        const carritoFiltrado = await Carrito.find({idUsuario: idUsuario[0].id});
+        return carritoFiltrado==undefined ? {} : carritoFiltrado;
     } catch (err) {
         console.log('Error en proceso:', err);
     }
 };
 
-//listar un único producto
-const listarId = async (id) => {
-    try {
-        await conexionDB();
-        const productoFiltrado = await Producto.find({id:id});
-        return productoFiltrado==undefined ? {} : productoFiltrado;
-    } catch (err) {
-        console.log('Error en proceso:', err);
-    }
-};
-
-//listar productos segun categoria seleccionada
-const listarCatId = async (catId) => {
-    try {
-        await conexionDB();
-        const productosFiltrados = await Producto.find({idCategoria:catId});
-        return productosFiltrados==undefined ? {} : productosFiltrados;
-    } catch (err) {
-        console.log('Error en proceso:', err);
-    }
-};
-
-//agregar un producto
+//agregar un producto al carrito de un usuario
 const agregar = async (body) => {
     try {
         await conexionDB();
-        const idCategoria = await idSegunCategoria(body.categoria); // según el nombre de la categoria del body, devuelve el ID de esta
-        const productoNuevo = {
-            id: uuidv4(),
-            nombre: body.nombre,
-            precio: body.precio,
-            foto: body.foto,
-            colores: body.colores.split(" "),
-            fechaHora: moment().utcOffset("-03:00").format('DD/MM/YYYY h:mm:ss a'),
-            descripcion: body.descripcion,
-            idCategoria: idCategoria,
-            codigo: body.codigo,
-            stock: body.stock
-        };
-        await Producto(productoNuevo).save();
+        const idProducto = body.id;
+        const productoFiltrado = await Producto.find({id:idProducto});
+        const idUsuario = req.user[0].id;
+        await Carrito.updateOne({idUsuario: idUsuario},{ $addToSet: { "productos" : { $each: productoFiltrado}}});
+        // await Producto(productoNuevo).save();
         return;
     } catch (err) {
         console.log('Error en proceso:', err);
@@ -116,4 +83,4 @@ const eliminar = async (id) => {
     }
 }
 
-module.exports = {listar,listarCatId,listarId,agregar,editar,editarStock,editarPrecio,eliminar};
+module.exports = {listar,agregar,editar,editarStock,editarPrecio,eliminar};

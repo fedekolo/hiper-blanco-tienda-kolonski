@@ -28,7 +28,7 @@ export const ItemDetailControl = ({ item, onAdd, addItem,setOpenAlert }) => {
                 onChange={e => setColorSelected(e.target.value)}
                 defaultValue = ""
                 >
-                    {item.colors.map((color,i) => 
+                    {item.colores.map((color,i) => 
                         <MenuItem value={color} key={i}>{color}</MenuItem>
                     )}
                 </Select>

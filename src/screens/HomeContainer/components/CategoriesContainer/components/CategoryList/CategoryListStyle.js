@@ -6,22 +6,9 @@ export const categoryListStyle = theme => {
         }
         ,
         formControl: {
-            width: "10rem",
-            display: "none",
-            "@media (max-width: 600px)": {
-                display: "block"
-            }
+            width: "10rem"
         },
         select: {
             width: "100%"
-        },
-        cardsCategories: {
-            display: "flex",
-            gap: "2rem",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            "@media (max-width: 600px)": {
-                display: "none"
-            }
         }
 })};

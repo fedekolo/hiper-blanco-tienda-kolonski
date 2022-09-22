@@ -6,7 +6,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Home,Store,FormatListBulleted,Shop,Message,ExpandLess,ExpandMore,LabelImportant} from '@material-ui/icons';
+import { Home,AccountCircle,Shop,Message,ExpandLess,ExpandMore,LabelImportant} from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import Collapse from '@material-ui/core/Collapse';
 
@@ -23,85 +23,81 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const itemsMenu = [
-  {
-    title: "Inicio",
-    icon: <Home />,
-    link: "/"
-  },
-  {
-    title: "Tienda",
-    icon: <Shop />,
-    link: "/"
-  },
-  {
-    title: "Local",
-    icon: <Store />,
-    link: "/"
-  },
-  {
-    title: "Contacto",
-    icon: <Message />,
-    link: "/"
-  },
-  {
-    title: "Categorias",
-    icon: <FormatListBulleted />,
-    link: "/"
-  }
-];
-
-const categories = [
-  {
-    title: "Sabanas",
-    icon: <LabelImportant />,
-    link: "/category/1"
-  },
-  {
-    title: "Acolchados",
-    icon: <LabelImportant />,
-    link: "/category/2"
-  },
-  {
-    title: "Frazadas",
-    icon: <LabelImportant />,
-    link: "/category/3"
-  },
-  {
-    title: "Cubrecamas",
-    icon: <LabelImportant />,
-    link: "/category/4"
-  },
-  {
-    title: "Toallas y toallones",
-    icon: <LabelImportant />,
-    link: "/category/5"
-  },
-  {
-    title: "Decoración",
-    icon: <LabelImportant />,
-    link: "/category/6"
-  },
-  {
-    title: "Baño",
-    icon: <LabelImportant />,
-    link: "/category/7"
-  },
-  {
-    title: "Cocina",
-    icon: <LabelImportant />,
-    link: "/category/8"
-  },
-  {
-    title: "Almohadas",
-    icon: <LabelImportant />,
-    link: "/category/9"
-  }
-]
-
-export const TemporaryDrawer = ({children}) => {
+export const TemporaryDrawer = ({children,user}) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+
+  const itemsMenu = [
+    {
+      title: "Inicio",
+      icon: <Home />,
+      link: "/"
+    },
+    {
+      title: "Tienda",
+      icon: <Shop />,
+      link: "/store"
+    },
+    {
+      title: "Contacto",
+      icon: <Message />,
+      link: "/contact"
+    },
+    {
+      title: user===false ? "Usuario" : user.map(e => e.nombre),
+      icon: <AccountCircle />,
+      link: "/",
+      userMenu: true
+    }
+  ];
+  
+  const categories = [
+    {
+      title: "Sabanas",
+      icon: <LabelImportant />,
+      link: "/category/1"
+    },
+    {
+      title: "Acolchados",
+      icon: <LabelImportant />,
+      link: "/category/2"
+    },
+    {
+      title: "Frazadas",
+      icon: <LabelImportant />,
+      link: "/category/3"
+    },
+    {
+      title: "Cubrecamas",
+      icon: <LabelImportant />,
+      link: "/category/4"
+    },
+    {
+      title: "Toallas y toallones",
+      icon: <LabelImportant />,
+      link: "/category/5"
+    },
+    {
+      title: "Decoración",
+      icon: <LabelImportant />,
+      link: "/category/6"
+    },
+    {
+      title: "Baño",
+      icon: <LabelImportant />,
+      link: "/category/7"
+    },
+    {
+      title: "Cocina",
+      icon: <LabelImportant />,
+      link: "/category/8"
+    },
+    {
+      title: "Almohadas",
+      icon: <LabelImportant />,
+      link: "/category/9"
+    }
+  ]
 
   const [state, setState] = useState({
     top: false,
@@ -132,7 +128,7 @@ export const TemporaryDrawer = ({children}) => {
     >
       <List>
         {itemsMenu.map((item, i) => (
-            item.title === "Categorias" ? 
+            item.userMenu ? 
                 <ListItem button onClick={handleClick} key={i}>
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.title}/>

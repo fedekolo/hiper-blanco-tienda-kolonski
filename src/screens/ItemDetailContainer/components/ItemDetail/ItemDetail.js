@@ -14,24 +14,25 @@ export const ItemDetail = ({ item }) => {
     const onAdd = (quantityToAdd) => setSalesCount(quantityToAdd);
     const [openAlert,setOpenAlert] = useState(false);
     const { addItem } = useContext(CartContext);
-    const addItemAction = (color) => addItem(item,color,salesCount)
+    const addItemAction = (color) => addItem(item,color,salesCount);
+    item = item[0]; //elijo el único producto del array
 
     return <section className={classes.container}>
         {
-            item.id===undefined ?
+            item===undefined ?
             <div className={classes.noFind}>
                 <img src={productNoFind} alt="Producto no encontrado" /> 
                 <h1>Producto no encontrado!</h1>
             </div> :
             <>
                 <div className={classes.img}>
-                    <img src={item.pictureUrl} alt={item.description}/>
+                    <img src={item.foto} alt={item.descripcion}/>
                 </div>
                 <div className={classes.infoProduct}>
                     <div>
-                        <h2>{item.title}</h2>
-                        <p>{item.description}</p>
-                        <span>${item.price}</span>
+                        <h2>{item.nombre}</h2>
+                        <p>{item.descripcion}</p>
+                        <span>${item.precio}</span>
                     </div>
                     <div className={classes.itemDetailControl}>
                         <ItemDetailControl item={item} onAdd={onAdd} addItem={addItemAction} setOpenAlert={setOpenAlert} />

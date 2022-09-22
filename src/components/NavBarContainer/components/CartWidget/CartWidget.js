@@ -16,11 +16,7 @@ export const CartWidget = () => {
         )
 
     return <div className={classes.container}>
-        {cart.length>0 && 
-        <>
         <ShoppingCart className={classes.btn} color="disabled" />
-        <div className={totalProducts>9 ? classes.highProducts : classes.fewProducts}>{totalProducts}</div>
-        </>
-        }
+        <div className={totalProducts>9 ? classes.highProducts : classes.fewProducts}>{totalProducts>0 ? totalProducts : ''}</div>
     </div>
 }

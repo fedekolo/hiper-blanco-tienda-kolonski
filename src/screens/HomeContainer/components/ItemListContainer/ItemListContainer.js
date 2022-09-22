@@ -4,7 +4,6 @@ import { itemListContainerStyle } from './ItemListContainerStyle';
 import { ItemList } from './components/ItemList/ItemList';
 import Loader from "react-loader-spinner";
 import { useParams } from 'react-router-dom';
-import { dataBase } from '../../../../Firebase/firebase';
 
 const useStyles = makeStyles((theme) => itemListContainerStyle(theme));
 
@@ -14,26 +13,23 @@ export const ItemListContainer = () => {
     const [productos,setProductos] = useState([]);
     const [loader,setLoader] = useState(false);
     
+    // conexion con base de datos
     useEffect(() => {
         setLoader(true);
-        const itemCollection = dataBase.collection("productos");
-        const categorySelected = catId === undefined || catId === "10" ? itemCollection : itemCollection.where('catId','==',catId);
 
-        categorySelected.get().then((doc) => {
-            if(doc.size === 0) {
-                setProductos(undefined);
-            }
-            setProductos(doc.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            })))
-
-        }).catch((error) => {
-            console.log("Error en la carga de productos",error);
-        }).finally(() => {
-            setLoader(false);
-        })
-        
+        if(catId === undefined) {
+            fetch('http://localhost:8080/productos/listar')
+            .then(async res => await res.json())
+            .then(res => setProductos(res))
+            .catch(err => console.log(err))
+            .finally(() => setLoader(false));
+        } else {
+            fetch(`http://localhost:8080/productos/categoria/${catId}`)
+            .then(res => res.json())
+            .then(res => setProductos(res))
+            .catch(err => console.log(err))
+            .finally(() => setLoader(false));
+        }
     },[catId]);
 
     return <section className={classes.container} id={'tienda'}>

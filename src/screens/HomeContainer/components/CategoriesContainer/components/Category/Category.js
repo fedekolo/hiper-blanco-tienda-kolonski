@@ -7,8 +7,7 @@ export const Category = ({ category }) => {
     const classes = useStyles();
 
     return <article className={classes.container} >
-        <img src={category.pictureUrl} alt={category.name}/>
-        <span>{category.name}</span>
+        <span>{category.nombre}</span>
     </article>
 
 }
